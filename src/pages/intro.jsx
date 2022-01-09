@@ -5,33 +5,41 @@ import queryString from 'query-string';
 import Save from '../components/save';
 
 const Intro = () => {
-  const [url, setUrl] = useState('');
+  const [youtubeUrl, setYoutubeUrl] = useState('');
   const navigate = useNavigate();
 
   const onUrlChangeHandler = e => {
-    setUrl(e.target.value);
+    setYoutubeUrl(e.target.value);
   }
 
   const getVByQueryString = () => {
-    const { query } = queryString.parseUrl(url, { parseFragmentIdentifier: true })
-    return query.v;
+    const {query} = queryString.parseUrl(youtubeUrl, { parseFragmentIdentifier: true })
+    
+    const splited = youtubeUrl.split('/');
+    const rst = query.v || splited.length > 3 ? youtubeUrl.split('/')[3] : false;
+    return rst;
   }
 
   const onGotoControllerPage = () => {
-    navigate('controller', { state: { videoId: getVByQueryString() } })
+    const videoId = getVByQueryString()
+    if (!videoId) {
+      alert('url에서 videoID를 찾을 수 없습니다.');
+      return
+    }
+    navigate('controller', { state: { videoId } })
   }
 
   return (
     <div style={{ width: '80%', margin: '0 auto' }}>
       <div style={{ width: '80%', position: 'absolute', top: "44%", }}>
         <Save
-          value={url}
+          value={youtubeUrl}
           onChange={onUrlChangeHandler}
           onClick={() => onGotoControllerPage()}
           onEnterPress={onGotoControllerPage}
           placeholder='youtube url...'
           label='이동'
-          disabled={!url}
+          disabled={!youtubeUrl}
         />
       </div>
     </div>
