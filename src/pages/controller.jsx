@@ -10,10 +10,7 @@ import { hms } from '../utils/date';
 
 const Controller = () => {
   const [player, setPlayer] = useState(null);
-  const [markers, setMarkers] = useState([
-    {time:120, memo: '1'},
-    {time:220, memo: '2'},
-  ]);
+  const [markers, setMarkers] = useState([]);
   const [memo, setMemo] = useState('');
   const {state} = useLocation();
 
