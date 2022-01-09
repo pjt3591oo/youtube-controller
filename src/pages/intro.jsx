@@ -9,7 +9,6 @@ const Intro = () => {
   const navigate = useNavigate();
 
   const onUrlChangeHandler = e => {
-    console.log(e.target.value)
     setUrl(e.target.value);
   }
 
