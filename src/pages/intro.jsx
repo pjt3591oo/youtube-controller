@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import Save from '../components/save';
 
 const Intro = () => {
-  const [url, setUrl] = useState('https://www.youtube.com/watch?v=9FIcdisI4Jo');
+  const [url, setUrl] = useState('');
   const navigate = useNavigate();
 
   const onUrlChangeHandler = e => {
