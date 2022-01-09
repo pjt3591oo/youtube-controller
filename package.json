@@ -30,6 +30,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "http://pjt3591oo.github.io/youtube-timemark",
   "browserslist": {
     "production": [
       ">0.2%",
