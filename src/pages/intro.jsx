@@ -15,13 +15,15 @@ const Intro = () => {
   const getVByQueryString = () => {
     const {query} = queryString.parseUrl(youtubeUrl, { parseFragmentIdentifier: true })
     
-    const splited = youtubeUrl.split('/');
-    const rst = query.v || splited.length > 3 ? youtubeUrl.split('/')[3] : false;
-    return rst;
+    const splited = youtubeUrl.split('/');  
+    
+    if (query.v) return query.v
+    return splited.length > 3 ? youtubeUrl.split('/')[3] : false;
   }
 
   const onGotoControllerPage = () => {
     const videoId = getVByQueryString()
+    console.log(videoId)
     if (!videoId) {
       alert('url에서 videoID를 찾을 수 없습니다.');
       return
